@@ -20,7 +20,7 @@ namespace WrfHosting.Controllers
          */
         public HttpResponseMessage Get(string aSiteID, string aTimeStr)
         {
-            //D:\fetsrt\lakesServiceCarrier\Plugins\LKSrvPlugin_FetsRTSocketServer\WrfRun\Cezinc\13062612\output\wrf.m3d
+            //WrfRun\xxx\13062612\output\wrf.m3d
             var path = @"E:\projects\camview\src\camweb\FetsRT\src_F40\WrfHosting\WrfHosting\WrfData\cezinc\pluginauto.png";
             HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
             var stream = new FileStream(path, FileMode.Open);
