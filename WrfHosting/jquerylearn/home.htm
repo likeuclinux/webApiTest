@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../Content/StyleSheet.css" />
+    <script type="text/javascript" src="../Scripts/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../Scripts/jquerylearn/jquery-myPlugin.js"></script>
+    <script type="text/javascript" src="../Scripts/jquerylearn/jquery-hoverElement.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#btnFadeout").click(function () {
+                $("#myDiv").myPlugin();
+            });
+
+
+            $(".hoverText").hoverElement();
+
+            $(".hoverText2").hoverElement().css({ 'color': 'red' });
+        });
+    </script>
+    <style type="text/css">
+        .hoverText
+        {
+            margin: 2px;
+            padding: 6px;
+            cursor: pointer;
+            border: 1px solid black;
+        }
+        
+        .hoverText2
+        {
+            margin: 2px;
+            padding: 6px;
+            cursor: pointer;
+            border: 1px solid black;
+        }
+        
+        .hoverTextSel
+        {
+            background-color: Silver;
+            border: 1px dotted black;
+        }
+    </style>
+</head>
+<body>
+    <span class="pageTitle">jQuery Plugin </span>
+    <p>
+        Apart from offering a simple, effective, way to manage elements and various scripts,
+        jQuery also offers a mechanism for adding methods and extra functionalities to the
+        core module. By using this mechanism we are also allowed to create a new portion
+        of the code and add reuse it in different pages and projects.
+    </p>
+    <h3>
+        Write your first jQuery plugin</h3>
+    <div style="width: 400px; margin: auto; height: 75px; padding: 5px; border: 1px dotted gray;">
+        <div id="myDiv" style="padding: 6px; background-color: Silver;">
+            I am div which need to be fade out;
+        </div>
+        <input id="btnFadeout" type="button" value="Fade out" />
+    </div>
+    <p>
+        To write a plugin, Add new property in the jQuery.fn object where the name of the
+        property will be the name of your plugin.
+    </p>
+    <pre>    
+(function( $ ) {
+  $.fn.myPlugin = function() {
+  
+    // Do your awesome plugin stuff here
+
+  };
+})( jQuery );
+
+    </pre>
+    Lets start adding functionality with in your plugin and use it in web pages. In
+    our first example, I will simply fadeout the element.
+    <pre>
+(function ($) {
+
+    $.fn.myPlugin = function () {       
+
+        this.fadeOut('normal');
+
+    };
+})(jQuery);
+</pre>
+    <p>
+        Now save the file with name “jquery-myPlugin.js” and your plugin is ready to use.
+        Create html button and div on your page. Div will fade out on the click of the button.
+    </p>
+    <pre>
+
+ &lt;div style="width: 400px; margin: auto; height: 75px; padding: 5px; border: 1px dotted gray;"&gt;
+    &lt;div id="<b>myDiv</b>" style="padding: 6px; background-color: Silver;"&gt;
+        I am div which need to be fade out;
+    &lt;/div&gt;
+    &lt;input id="<b>btnFadeout</b>" type="button" value="Fade out" /&gt;
+ &lt;/div&gt;
+    </pre>
+    <p>
+        Now add jQuery script file ‘jquery-1.6.2.min.js’ and your plugin file ‘jquery-myPlugin.js’
+        into the page.
+    </p>
+    <pre>
+
+&lt;script type="text/javascript" src="Scripts/jquery-1.6.2.min.js">&lt;/script>
+&lt;script type="text/javascript" src="Scripts/jquery-myPlugin.js">&lt;/script>
+&lt;script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#btnFadeout").click(function () {
+            $("#myDiv").myPlugin();
+        });
+
+    });
+&lt;/script>
+
+</pre>
+    <p>
+        Register the click event of the button ‘btnFadeout’ button and call plugin method
+        for ‘myDiv’ using <code>$("#myDiv").myPlugin();</code> statement.
+    </p>
+    <h3>
+        Plugin for muliple elements
+    </h3>
+    <div style="width: 400px; margin: auto; padding: 5px; border: 1px dotted gray;">
+        <div class="hoverText">
+            First Button..
+        </div>
+        <div class="hoverText">
+            Second Button..
+        </div>
+        <div class="hoverText">
+            Third Button..
+        </div>
+    </div>
+    <p>
+        You can also write plugin which performs action on the group of element. Suppose
+        we want to change the background color of the element on mouse over. Simply get
+        each element and register hover event for that object. Let’s start the code for
+        hover plugin.
+    </p>
+    <pre>
+
+(function ($) {
+
+    $.fn.hoverElement = function () {
+
+        this.each(function () {
+
+            $(this).hover(
+                            function () {
+                                $(this).addClass('hoverTextSel');
+                            },
+                            function () {
+                                $(this).removeClass('hoverTextSel');
+                            }
+                        ); // end of Hover event
+
+        }); // end for each
+
+    }; // end of functions
+
+})(jQuery);
+    </pre>
+    <p>
+        $(selector).each() method is used to iterate over a jQuery object, array or any
+        collection. This example registers the hover event for the each element of jQuery
+        object.
+    </p>
+    <pre>
+
+&lt;div style="width: 400px; margin: auto; padding: 5px; border: 1px dotted gray;">
+    &lt;div class="hoverText">
+        First Button..
+    &lt;/div>
+    &lt;div class="hoverText">
+        Second Button..
+    &lt;/div>
+    &lt;div class="hoverText">
+        Third Button..
+    &lt;/div>
+&lt;/div>
+
+</pre>
+    <p>
+        In the html page, create buttons using div and assign ‘hoverText’ css class.
+    </p>
+    <pre>
+    $(".hoverText").hoverElement();
+</pre>
+    <p>
+        Now it is time to call the <code>hoverElement()</code> method for the collection.
+        Select elements having css class <code>‘hoverText’</code> using jQuery selector
+        <code>‘$(".hoverText")</code> and call the method.
+    </p>
+    <h3>
+        Chainability
+    </h3>
+    <div style="width: 400px; margin: auto; padding: 5px; border: 1px dotted gray;">
+        <div class="hoverText2">
+            First Button..
+        </div>
+        <div class="hoverText2">
+            Second Button..
+        </div>
+        <div class="hoverText2">
+            Third Button..
+        </div>
+    </div>
+    <p>
+        The beauty of the jQuery’s design is, it maintains chainability. You can perform
+        multiple actions in one series. So to maintain the chainability in a plugin, you
+        must make sure your plugin returns the ‘this’ keyword
+    </p>
+    <pre>
+ (function ($) {
+
+    $.fn.hoverElement = function () {
+
+      <b>return</b>  this.each(function () {
+
+
+          $(this).hover(
+                            function () {
+                                   $(this).addClass('hoverTextSel');
+                            },
+                            function () {
+                                    $(this).removeClass('hoverTextSel');
+                            }
+                        ); // end of Hover event
+
+        }); // end for each
+
+    }; // end of functions
+
+ })(jQuery);
+</pre>
+    <p>
+        Now you can perform multiple actions in one series.
+    </p>
+    <pre>
+  $(".hoverText2").hoverElement().css({'color':'red'});
+</pre>
+</body>
+</html>

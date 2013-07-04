@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../Content/StyleSheet.css" />
+    <script type="text/javascript" src="../Scripts/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../Scripts/jquerylearn/jquery-textHover.js"></script>
+    <style type="text/css">
+        .textBar
+        {
+            padding: 5px;
+            border: 1px dotted gray;
+            margin: 5px;
+            cursor: pointer;
+            width: 400px;
+            margin: 2px auto 2px auto;
+        }
+    </style>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#div1').textHover({
+                Text: 'I am going to over..',
+                ForeColor: 'yellow',
+                BackColor: 'Red'
+            });
+            $('#div2').textHover({ Text: 'I am second div...' });
+        });
+
+    </script>
+</head>
+<body>
+    <span class="pageTitle">Customization</span>
+    <p>
+        If you want to commercialize your plugin, then it should be configurable. For example
+        we should provide provision to change images, width, height etc. So users can change
+        the look and feel as per requirement.
+    </p>
+    <h3>
+        Example</h3>
+    <div>
+        <div id="div1" class="textBar">
+            Mouse over here.....
+        </div>
+        <div id="div2" class="textBar">
+            Mouse over here.....
+        </div>
+    </div>
+    <p>
+        For explaining the concept this example will allow user to change text, foreground
+        color and background on over. User can customize the setting as he want. Now our
+        plugin method will have one argument and user can pass setting while calling method.
+        See code below how method will look like now.
+    </p>
+    <pre>
+ $.fn.YouPlugin = function (options) {...}
+ </pre>
+    <p>
+        We also need to have default setting object, which will contains default value.
+    </p>
+    <pre>
+var defaultVal = {
+    Text: 'Your mouse is over',
+    ForeColor: 'red',
+    BackColor: 'gray'
+};
+ </pre>
+    <p>
+        At that time we have two different object, one is passed by user and second having
+        default value. We will merge this two objects using extend method provided by jQuery.
+    </p>
+    <pre>
+var obj = $.extend(defaultVal, options);
+</pre>
+    <p>
+        <code>extend()</code> method merge the contents of two or more objects together
+        into the first object. After merging two objects, we will have one final object,
+        which will be used for setting. The complete code of the plugin is below
+    </p>
+    <pre>
+(function ($) {
+
+    $.fn.textHover = function (options) {
+
+        var defaultVal = {
+
+            Text: 'Your mouse is over',
+            ForeColor: 'red',
+            BackColor: 'gray'
+        };
+
+        var obj = $.extend(defaultVal, options);
+
+        return this.each(function () {
+
+            var selObject = $(this);
+
+            var oldText = selObject.text();
+            var oldBgColor = selObject.css("background-color");
+            var oldColor = selObject.css("color");
+
+
+            selObject.hover(function () {
+
+                selObject.text(obj.Text);
+                selObject.css("background-color", obj.BackColor);
+                selObject.css("color", obj.ForeColor);
+            },
+            function () {
+                selObject.text(oldText);
+                selObject.css("background-color", oldBgColor);
+                selObject.css("color", oldColor);
+            }
+
+            );
+
+        });
+    }
+
+})(jQuery);
+    </pre>
+    <p>
+        Add two divs in the page and enter some text in it.
+    </p>
+    <pre>    
+&lt;div id="div1" class="textBar"&gt;
+    Mouse over here.....
+&lt;/div&gt;
+&lt;div id="div2" class="textBar"&gt;
+    Mouse over here.....
+&lt;/div&gt;
+    </pre>
+    <p>
+        Call plugin method for each div with different setting.
+    </p>
+    <pre>
+$(document).ready(function () {
+
+    $('#div1').textHover({
+        Text: 'I am going to over..',
+        ForeColor: 'yellow',
+        BackColor: 'Red'
+    });
+    $('#div2').textHover({ Text: 'I am second div...' });
+});
+</pre>
+</body>
+</html>

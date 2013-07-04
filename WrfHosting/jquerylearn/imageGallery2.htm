@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../Content/StyleSheet.css" />
+    <link type="text/css" rel="stylesheet" href="../Content/imageGallery2.css" />
+    <script type="text/javascript" src="../Scripts/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../Scripts/jquerylearn/jQuery-imageGallery2.js"></script>
+    <style type="text/css">
+        #myGallery ul
+        {
+            list-style: none;
+        }
+        
+        #myGallery ul li
+        {
+            display: inline;
+        }
+        
+        #myGallery ul li a
+        {
+            text-decoration: none;
+        }
+        
+        #myGallery ul li a img
+        {
+            text-decoration: none;
+            border: 3px solid #e1e1e1;
+        }
+    </style>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#myGallery a").imageGallery2();
+        });
+    
+    </script>
+</head>
+<body>
+    <span class="pageTitle">Advance Image Gallery</span>
+    <br />
+    <br />
+    <p>
+        We are going to create a plugin which is really close to the Lightbox plugin. Lightbox
+        is a very famous image plugin.
+    </p>
+    <p>
+        Basically, when an image is displayed on the page, a very handy possibility is offered
+        to the user. Clicking on the (small) thumbnail will cause the image to get bigger
+        and bigger until it reaches its original dimensions and is visible at full size
+        on the very same page that the smaller one's found!
+    </p>
+    <div id="myGallery">
+        <ul>
+            <li><a href="../Images/Nature/apple.jpg" title='The apple is the pomaceous fruit of the apple tree, species Malus domestica in the rose family (Rosaceae). It is one of the most widely cultivated tree fruits, and the most widely known of the many members of genus Malus that are used by humans.' />
+                <img src="../Images/Nature/apple_thumb.jpg" />
+                </a> </li>
+            <li><a href="../Images/Nature/white-flower.png" title="Chamomile or camomile is a common name for several daisy-like plants of the family Asteraceae. These plants are best known for their ability to be made into an infusion which is commonly used to help with sleep and is often served with either honey or lemon." />
+                <img src="../Images/Nature/white-flower-thumb.png" />
+                </a> </li>
+            <li><a href="../Images/Nature/Beautiful-white-flower.png" />
+                <img src="../Images/Nature/Beautiful-white-flower-thumb.png" />
+                </a></li>
+            <li><a href="../Images/Nature/bird1.png" title="The sparrows are a family of small passerine birds, Passeridae. They are also known as true sparrows, or Old World sparrows, names also used for a genus of the family, Passer." />
+                <img src="../Images/Nature/bird1-thumb.png" />
+                </a></li>
+            <li><a href="../Images/Nature/birds2.png" title="It has a finer bill than typical sparrows of the genus Passer and unlike them has no streaks on the plumage. The white double wing bar on the shoulder is diagnostic on the otherwise dull grey-brown sparrow." />
+                <img src="../Images/Nature/birds2-thumb.png" />
+                </a></li>
+            <li><a href="../Images/Nature/dictionary-plants-flowers.jpg" />
+                <img src="../Images/Nature/dictionary-plants-flowers-thumb.png" />
+                </a></li>
+            <li><a href="../Images/Nature/hibiscus-flower.png" />
+                <img src="../Images/Nature/hibiscus-flower-thumb.png" />
+                </a></li>
+            <li><a href="../Images/Nature/purple-flowers.png" />
+                <img src="../Images/Nature/purple-flowers-thumb.png" />
+                </a> </li>
+        </ul>
+    </div>
+    <p>
+        The previous example of Image gallery is just for the learning purpose and it is
+        not a good technique to implement plugin like image gallery. But the “Advance Image
+        Gallery” plugin has more features and visually more appealing. Add the thumbnail
+        and full image in to page using following html markup.
+    </p>
+    <pre>
+ &lt;div id="myGallery"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;
+            &lt;a href="Images/Nature/apple.jpg" title='The apple is the pomaceous...' /&gt;
+                &lt;img src="Images/Nature/apple_thumb.jpg" /&gt;
+            &lt;/a&gt; 
+        &lt;/li&gt;
+ .
+ .
+ .
+    &lt;/ul&gt;
+ &lt;/div&gt;
+ </pre>
+    <p>
+        Get all the anchor (&lt;a>) elements and pass them to the plugin.
+    </p>
+    <pre>
+    
+     $(document).ready(function () {
+            $("#myGallery a").imageGallery2();
+        });
+    
+    </pre>
+    <p>
+        The plugin gets the collection and register the click event of each element and
+        on the click event it adds some elements in the page. After adding it sets image
+        source, animations and register events on these elements.
+    </p>
+    <pre>
+  $('Body').append("&lt;div id='imageGallery2-overlay'&gt;&lt;/div&gt;" +
+                    "&lt;div id='imageGallery2-wrapper'&gt;" +
+                        "&lt;div id='imageGallery2-image-container'&gt;" +
+                                "&lt;div id='imageGallery2-close-bar'&gt;
+                                    &lt;div id='imageGallery2-close-button'&gt;
+                                         &lt;img src='Images/close-icon.png'/&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;" +
+                                "&lt;div style='clear: left; '&gt;" +
+                                "&lt;div id='imageGallery2-loadingImage'&gt;" +
+                                    "&lt;img  src='Images/loading.gif' width='50' height='50'/&gt;" +
+                                "&lt;/div&gt;" +
+                                "&lt;img id='imageGallery2-image'/&gt;" +
+                            "&lt;/div&gt;" +
+
+
+                            "&lt;/div&gt;" +
+                            "&lt;div id='imageGallery2-image-text-box'&gt;" +
+                                "&lt;div id='imageGallery2-image-caption'&gt;" +
+                                "&lt;/div&gt;" +
+                            "&lt;/div&gt;" +
+                    "&lt;/div&gt;");
+</pre>
+    <p>
+        As you can see in example, we preload full image before displaying it. First we
+        create image object and register onload method of the image object. Then we get
+        the source of image from clicked object and assign image source to the image object.
+    </p>
+    <pre>
+
+ // preload image before dispalying
+var objImagePreloader = new Image();
+
+var url = objClick.getAttribute('href');
+
+imageCaption = objClick.getAttribute('title');
+
+objImagePreloader.onload = function () {
+
+
+    $('#imageGallery2-image').attr('src', url);
+    // Perfomance an effect in the image container resizing it
+    resizeImageContainer(objImagePreloader.width, objImagePreloader.height);
+
+    //	clear onLoad, IE behaves irratically with animated gifs otherwise
+    objImagePreloader.onload = function () { };
+};
+objImagePreloader.src = url;
+
+</pre>
+    <p>
+        When onload method calls after loading the image. We set source of &lt;img> and
+        set width, height of the container and animated via width and height. When onload
+        method calls after loading the image. We set source of &lt;img> and set width, height
+        of the container and animated via width and height. User can close opened image
+        by clicking on image itself or by close button. On close we simple hide caption
+        of the image first and after that start animation to 0 width and height. On the
+        completion of animation we simply remove the object from the page and on the click
+        of next image we simply add them again.
+    </p>
+    <pre>
+ function CloseSelectedImage() {
+        $("#imageGallery2-image-text-box").hide();
+
+        $('#imageGallery2-image-container').animate({ width: 0, height: 0 }, 300, function () { 
+                                    $('#imageGallery2-overlay').remove();
+                                    $('#imageGallery2-wrapper').remove(); 
+                                     });
+ }
+</pre>
+</body>
+</html>

@@ -133,6 +133,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\imageGallery2.css" />
+    <Content Include="Content\StyleSheet.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -189,6 +191,30 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\close-icon.png" />
+    <Content Include="Images\footer_bar_bg.png" />
+    <Content Include="Images\loading.gif" />
+    <Content Include="Images\Nature\apple.jpg" />
+    <Content Include="Images\Nature\apple_thumb.jpg" />
+    <Content Include="Images\Nature\Beautiful-white-flower-thumb.png" />
+    <Content Include="Images\Nature\Beautiful-white-flower.png" />
+    <Content Include="Images\Nature\bird1-thumb.png" />
+    <Content Include="Images\Nature\bird1.png" />
+    <Content Include="Images\Nature\birds2-thumb.png" />
+    <Content Include="Images\Nature\birds2.png" />
+    <Content Include="Images\Nature\dictionary-plants-flowers-thumb.png" />
+    <Content Include="Images\Nature\dictionary-plants-flowers.jpg" />
+    <Content Include="Images\Nature\hibiscus-flower-thumb.png" />
+    <Content Include="Images\Nature\hibiscus-flower.png" />
+    <Content Include="Images\Nature\purple-flowers-thumb.png" />
+    <Content Include="Images\Nature\purple-flowers.png" />
+    <Content Include="Images\Nature\white-flower-thumb.png" />
+    <Content Include="Images\Nature\white-flower.png" />
+    <Content Include="jquerylearn\home.htm" />
+    <Content Include="jquerylearn\hoverText.htm" />
+    <Content Include="jquerylearn\ImageGallery.htm" />
+    <Content Include="jquerylearn\imageGallery2.htm" />
+    <Content Include="jquerylearn\menu.htm" />
     <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -201,6 +227,12 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jqueryLearn\jQuery-center.js" />
+    <Content Include="Scripts\jqueryLearn\jquery-hoverElement.js" />
+    <Content Include="Scripts\jqueryLearn\jQuery-imageGallery.js" />
+    <Content Include="Scripts\jqueryLearn\jQuery-imageGallery2.js" />
+    <Content Include="Scripts\jqueryLearn\jquery-myPlugin.js" />
+    <Content Include="Scripts\jqueryLearn\jquery-textHover.js" />
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />

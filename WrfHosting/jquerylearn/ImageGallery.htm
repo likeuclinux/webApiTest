@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../Content/StyleSheet.css" />
+    <script type="text/javascript" src="../Scripts/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../Scripts/jquerylearn/jQuery-imageGallery.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("img").imageGallery();
+
+        });
+    </script>
+</head>
+<body>
+    <span class="pageTitle">Image Gallery</span>
+    <br />
+    <br />
+    <div>
+        <img src="../Images/Nature/dictionary-plants-flowers.jpg" />
+        <img src="../Images/Nature/apple.jpg" />
+        <img src="../Images/Nature/birds2.png" />
+    </div>
+    <p>
+        After having basic knowledge about writing plugin, now we will move ahead to create
+        image gallery plugin. Suppose you have images on the web page and you want to maximize
+        it when users click on image. So let’s start writing your plugin. User will pass
+        image collection to our plugin and we will add functionality of click event.
+    </p>
+    <pre>
+         $(document).ready(function () {
+            $("img").imageGallery();
+        });
+    </pre>
+    <p>
+        Our plugin will get the collection of images and register the click event of each
+        image. On the click of image, we will create copy of clicked image using clone()
+        method. After setting the width, height, border etc. of image object, we will add image object
+        into the page using prependTo(‘body’) statement.
+    </p>
+    <pre>
+    var image = e.clone();
+    .
+    .
+    . 
+    image.prependTo('body').center();
+    </pre>
+    <p>
+        Here is the complete code of the plugin
+    </p>
+    <pre>
+    
+    $.fn.imageGallery = function () {
+
+        return this.each(function () {
+
+            var e = $(this);
+            var h = e.height();
+            var w = e.width();
+
+            e.height(75);
+            e.width(75);
+
+            e.click(function () {
+
+
+                $("#gallery_popup_image").remove(); // remove last opened image, if any
+
+                var image = e.clone(); // create duplicate object
+
+                image.attr("id", "gallery_popup_image");
+               
+                image.css({
+                            position:"absolute",
+                            border:"6px solid #fffa7c"
+                          });
+
+                image.height(h);
+                image.width(w);
+                image.prependTo('body').center();
+
+                image.click(function () {
+                    $(this).remove();
+                });
+            });
+        });
+
+    };
+    </pre>
+</body>
+</html>
